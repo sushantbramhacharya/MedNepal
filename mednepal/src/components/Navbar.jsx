@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className='p-8 flex justify-between relative'>
       <div className='flex items-center gap-6 lg:gap-16'>
-      <h1 className='text-3xl'>MedNepal</h1>
+      <h1 className='text-3xl' >MedNepal</h1>
           <input type="text" placeholder="Search Medicine" className='p-2 m-0 sm:w-[50vw]  md:w-[60vw] border-slate-400 border-2 rounded-lg lg:w-[20vw] lg:text-md lg:p-4 focus:outline-none ' />
       </div>
         

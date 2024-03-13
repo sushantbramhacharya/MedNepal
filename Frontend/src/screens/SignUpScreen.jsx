@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function SignUpScreen() {
   return (
@@ -21,7 +22,10 @@ function SignUpScreen() {
             <a href="" className='block py-2 text-blue-800'>Privacy Policy  </a>
             <div className='flex gap-4'>
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Sign Up</button>
-                <button type="submit" className=" text-blue-600 px-4 py-2 rounded  ">Login</button>
+                <Link to='/login'>
+                
+                <button type="button" className=" text-blue-600 px-4 py-2 rounded  ">Login</button>
+                </Link>
             </div>
             
         </form>

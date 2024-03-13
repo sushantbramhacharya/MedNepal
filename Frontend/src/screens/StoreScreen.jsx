@@ -16,7 +16,7 @@ function StoreScreen() {
       <h1>Loading</h1>:
       isError?
       <h1>Error Occured</h1>:
-      meds.map((med)=>(<Card product={med}/>))
+      meds.map((med)=>(<Card med={med}/>))
       }
       
     </div>

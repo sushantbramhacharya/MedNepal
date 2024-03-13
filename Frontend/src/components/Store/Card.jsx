@@ -1,17 +1,21 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const Card = ({ product }) => {
+const Card = ({med}) => {
   return (
+    
     <div className="bg-white w-[90%] md:w-1/4 rounded-lg shadow-md overflow-hidden">
-      <img className="w-full h-64 object-cover object-center" src={product.image} alt={product.name} />
+      <Link to={`/med/${med._id}`}>
+      <img className="w-full h-64 object-cover object-center" src={med.image} alt={med.name} />
       <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-        <p className="text-gray-700 mb-4">{product.description}</p>
+        <h2 className="text-xl font-semibold mb-2">{med.name}</h2>
+        <p className="text-gray-700 mb-4">{med.description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-gray-900 text-xl">Nrs {product.price}</span>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-xl">Add to Cart</button>
+          <span className="text-gray-900 text-xl">Nrs {med.price}</span>
+          
         </div>
       </div>
+      </Link>
     </div>
   );
 };

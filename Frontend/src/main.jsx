@@ -5,6 +5,9 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import StoreScreen from './screens/StoreScreen';
 import HomeScreen from './screens/HomeScreen.jsx';
+import LoginScreen from './screens/LoginScreen.jsx';
+import SignUpScreen from './screens/SignUpScreen.jsx';
+import ContactUs from './screens/ContactUs.jsx'
 
 
 const router = createBrowserRouter(
@@ -12,6 +15,9 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route path='' element={<HomeScreen/>}/>
       <Route path='store' element={<StoreScreen/>}/>
+      <Route path='login' element={<LoginScreen/>}/>
+      <Route path='signup' element={<SignUpScreen/>}/>
+      <Route path='contact' element={<ContactUs/>}/>
     </Route>
   )
 )

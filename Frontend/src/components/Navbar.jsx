@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {NavLink} from 'react-router-dom';
 
 function Navbar() {
     const [mobileMenu, setmobileMenu] = useState(false);
@@ -10,18 +11,68 @@ function Navbar() {
       </div>
         
             <ul className={`absolute inset-0 bg-slate-400 h-fit z-10 text-white p-5 text-lg ${mobileMenu?'block':'hidden'}`}>
-                <li>Home</li>
-                <li>Store</li>
-                <li>Login</li>
-                <li>Sign Up</li>
-                <li>Contact Us</li>
+            <li>
+                  <NavLink to='/'  
+                  className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Home
+                  </NavLink>
+                </li>
+                <li><NavLink to='/store' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Store
+                  </NavLink></li>
+                <li>
+                <NavLink to='/login' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Login
+                  </NavLink>
+                </li>
+                <li><NavLink to='/signup' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Sign Up
+                  </NavLink></li>
+                <li><NavLink to='/contact' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Contact Us
+                  </NavLink></li>
             </ul>
             <ul className={`hidden  inset-0 bg-slate-400 h-fit z-10 text-white p-5 text-lg gap-10 rounded-lg lg:flex`}>
-                <li>Home</li>
-                <li>Store</li>
-                <li>Login</li>
-                <li>Sign Up</li>
-                <li>Contact Us</li>
+                <li>
+                  <NavLink to='/'  
+                  className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Home
+                  </NavLink>
+                </li>
+                <li><NavLink to='/store' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Store
+                  </NavLink></li>
+                <li>
+                <NavLink to='/login' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Login
+                  </NavLink>
+                </li>
+                <li><NavLink to='/signup' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Sign Up
+                  </NavLink></li>
+                <li><NavLink to='/contact' className={({ isActive, isPending }) =>
+                    (isActive&&'font-bold')
+                    }>
+                    Contact Us
+                  </NavLink></li>
             </ul>
         <button className='z-20 lg:hidden' onClick={()=>setmobileMenu(!mobileMenu)}>
                 <img className="w-9" src="https://www.svgrepo.com/show/506800/burger-menu.svg" alt="menu" />

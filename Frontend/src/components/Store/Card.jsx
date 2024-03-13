@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({ product }) => {
   return (
-    <div className="bg-white w-[90%] rounded-lg shadow-md overflow-hidden">
+    <div className="bg-white w-[90%] md:w-1/4 rounded-lg shadow-md overflow-hidden">
       <img className="w-full h-64 object-cover object-center" src={product.image} alt={product.name} />
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{product.name}</h2>

@@ -5,8 +5,7 @@ function Filter() {
   if(filterToggled)
   {
     return (
-      <div>
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="bg-white mx-auto p-4 rounded-lg shadow-md md:w-1/2 justify-center">
           <h2 className="text-lg font-semibold mb-2">Filters <span className="cursor-pointer bg-blue-300 rounded-md px-2 py-1 text-white" onClick={()=>setFilterToggled(false)}>X</span></h2>
   
           <div className="mb-4">
@@ -80,12 +79,11 @@ function Filter() {
             </div>
           </div>
         </div>
-      </div>
     );
   }
   else{
     return(
-      <button onClick={()=>setFilterToggled(true)} className="bg-blue-500 px-3 py-1 rounded-md text-white">Filter</button>
+      <button onClick={()=>setFilterToggled(true)} className="bg-blue-500 block mx-auto px-3 py-1 rounded-md text-white">Filter</button>
     )
   }
   

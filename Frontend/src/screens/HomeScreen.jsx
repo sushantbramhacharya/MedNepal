@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home() {
+function HomeScreen() {
   return (
     <>
     <div className="relative">
@@ -31,4 +31,4 @@ function Home() {
   )
 }
 
-export default Home
+export default HomeScreen

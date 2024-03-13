@@ -3,7 +3,7 @@ const errorMiddleware=(error,req,res,next)=>{
     let message=err.message;
 
     //Check for Mongoose cast error when wrong Oid is given
-    if(err.name==='CastError' && err.kind === 'ObjectId')
+    if(error.name==='CastError' && error.kind === 'ObjectId')
     {
         message="Resoruce not found";
         statusCode=404;
@@ -11,6 +11,6 @@ const errorMiddleware=(error,req,res,next)=>{
 
     res.status(statusCode).json({
         message,
-        stack:process.env.NODE_ENV === 'production' ? '---' : err.stack
+        stack:false ? '---' : error.stack
     });
 }

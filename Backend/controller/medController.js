@@ -6,7 +6,10 @@ export const fetchMeds=async(req,res)=>{
 }
 
 export const fetchMedsByID=async(req,res)=>{
-    const med=meds.find((med)=>med._id===Number(req.params.id))
-
+    const med=await medModel.findById(req.params.id);
     res.status(200).json(med);
+}
+export const fetchMedsSorted=async(req,res)=>{
+    const meds=await medModel.find().sort({price:Number(req.params.sort)});
+    res.status(200).json(meds);
 }

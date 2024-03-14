@@ -3,9 +3,15 @@ import { api } from "./api";
 const medsApi=api.injectEndpoints({
     endpoints:(builder)=>({
         getMeds:builder.query({
-            query:()=>({
-                url:'/meds'
-            }),
+            query:(sort)=>(
+                sort===0?
+                {
+                    url:'/meds'
+                }:
+                {
+                    url:'/meds/sort/'+sort
+                }
+                ),
             keepUnusedDataFor:5
         }),
         getMedById:builder.query({
@@ -13,7 +19,7 @@ const medsApi=api.injectEndpoints({
                 url:'/meds/'+medId
             }),
             keepUnusedDataFor:5
-        })
+        }),
     })
 })
 

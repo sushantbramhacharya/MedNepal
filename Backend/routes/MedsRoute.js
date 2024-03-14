@@ -1,14 +1,10 @@
 import { Router } from "express";
-import meds from "../data/meds.js";
+
+import {fetchMeds,fetchMedsByID } from "../controller/medController.js";
 
 const router = Router();
-router.route('/').get((req,res)=>{
-    res.status(200).json(meds);
-})
+router.route('/').get(fetchMeds)
 
-router.route('/:id').get((req,res)=>{
-    const med=meds.find((med)=>med._id===Number(req.params.id))
-    res.status(200).json(med);
-})
+router.route('/:id').get(fetchMedsByID)
 
 export default router;

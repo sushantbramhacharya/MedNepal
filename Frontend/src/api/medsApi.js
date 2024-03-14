@@ -5,9 +5,16 @@ const medsApi=api.injectEndpoints({
         getMeds:builder.query({
             query:()=>({
                 url:'/meds'
-            })
+            }),
+            keepUnusedDataFor:5
+        }),
+        getMedById:builder.query({
+            query:(medId)=>({
+                url:'/meds/'+medId
+            }),
+            keepUnusedDataFor:5
         })
     })
 })
 
-export const {useGetMedsQuery}=medsApi;
+export const {useGetMedsQuery,useGetMedByIdQuery}=medsApi;

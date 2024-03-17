@@ -28,5 +28,5 @@ const medSchema=new Schema({
     }
 },{timestamps:true})
 
-export const medModel=model('Med',medSchema);
+export const Med=model('Med',medSchema);
 

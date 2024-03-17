@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
 import { DB_URL } from "../constants.js";
-import { medModel } from "../models/medModel.js";
+import { medModel as Med } from "../models/medModel.js";
 
 const connectDb = async () => {
   try {
@@ -94,7 +94,7 @@ const medData=[
 ]
 const insertData = async() => {
   await medData.forEach(async(med)=>{
-    const medi = new medModel(med);
+    const medi = new Med(med);
     const medicine = await medi.save();
   })
   

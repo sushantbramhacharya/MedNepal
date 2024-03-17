@@ -15,7 +15,7 @@ function LoginScreen() {
     useEffect(()=>{
         if(Object.keys(user).length>0)
         {
-            navigator('/profile')
+            navigator('/user/profile')
         }
     },[user])
     

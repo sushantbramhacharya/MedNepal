@@ -16,7 +16,7 @@ function SignUpScreen() {
     useEffect(()=>{
         if(Object.keys(user).length>0)
         {
-            navigator('/profile')
+            navigator('/user/profile')
         }
     },[user])
     const dispatch=useDispatch();

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function HomeScreen() {
   return (
@@ -7,7 +8,8 @@ function HomeScreen() {
     <img src="https://cdn.pixabay.com/photo/2023/10/01/14/40/medicine-8287535_1280.jpg" className="w-full h-auto lg:h-[80vh] object-cover" alt="Background" />
     <div className="absolute inset-0 bg-black bg-opacity-40"></div>
     <div className='p-5 absolute inset-0 top-1/3 text-4xl text-white lg:text-7xl lg:p-24'> Get Best Medicines in town <br />
-    <button className='text-2xl bg-blue-500 m-2 p-3 px-4 rounded-3xl hover:bg-orange-600 '>Vist Store</button>
+    <Link to='/store'><button className='text-2xl bg-blue-500 m-2 p-3 px-4 rounded-3xl hover:bg-orange-600 '>Vist Store</button>
+    </Link>
     </div>
     </div>
     <div>

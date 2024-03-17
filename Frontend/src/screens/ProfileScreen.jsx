@@ -1,8 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 const ProfileScreen = () => {
-  const user = {
+  const {user} = useSelector((state)=>state.userSlice);
+    const navigator=useNavigate();
+    useEffect(()=>{
+        if(Object.keys(user).length<1)
+        {
+            navigator('/login')
+        }
+    },[user])
+
+  const userD = {
     name: "sushant",
     email: "email@email.com",
     password: 123,
@@ -57,13 +68,13 @@ const ProfileScreen = () => {
       >
         {" "}
         {/* Adjusted max-w-4xl */}
-        <h2 className="text-xl font-semibold mb-4">Name: {user.name.toUpperCase()}</h2>
-        <p className="text-gray-600">Email: {user.email}</p>
+        <h2 className="text-xl font-semibold mb-4">Name: {userD.name.toUpperCase()}</h2>
+        <p className="text-gray-600">Email: {userD.email}</p>
 
         <div className="cart mt-4">
           <h3 className="text-lg font-semibold mb-2">Cart</h3>
           <div className="grid grid-cols-2 gap-4">
-            {user.cart.map((item, index) => (
+            {userD.cart.map((item, index) => (
               <div
                 key={index}
                 className="flex items-center bg-white rounded-lg shadow-lg p-4"
@@ -95,25 +106,25 @@ const ProfileScreen = () => {
           <div className="text-gray-600">
             <p>
               <span className="font-semibold">Street:</span>{" "}
-              {user.shippingAddress.street}
+              {userD.shippingAddress.street}
             </p>
             <p>
               <span className="font-semibold">Municipality:</span>{" "}
-              {user.shippingAddress.municipality}
+              {userD.shippingAddress.municipality}
             </p>
             <p>
               <span className="font-semibold">Ward No:</span>{" "}
-              {user.shippingAddress.wardNo}
+              {userD.shippingAddress.wardNo}
             </p>
             <p>
               <span className="font-semibold">District:</span>{" "}
-              {user.shippingAddress.district}
+              {userD.shippingAddress.district}
             </p>
           </div>
         </div>
         <div className="orders mt-4">
           <h3 className="text-lg font-semibold mb-2">Orders</h3>
-          {user.orders.map((order) => (
+          {userD.orders.map((order) => (
             <div
               key={order.orderId}
               className="order mb-4 bg-white rounded-lg shadow-lg p-4"

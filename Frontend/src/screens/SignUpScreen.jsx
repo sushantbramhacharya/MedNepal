@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import React,{useState,useEffect} from 'react'
+import { Link,useNavigate } from 'react-router-dom'
 import { useRegisterMutation } from '../api/userApi'
-import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/userSlice';
+import { useDispatch,useSelector } from 'react-redux';
 
 function SignUpScreen() {
     const [email, setEmail] = useState("");
@@ -10,7 +10,15 @@ function SignUpScreen() {
     const [cpassword, setCpassword] = useState("");
     const [name,setName]=useState("");
     const [register,{isLoading}]=useRegisterMutation();
-    
+    const {user} = useSelector((state)=>state.userSlice);
+    const navigator=useNavigate();
+
+    useEffect(()=>{
+        if(Object.keys(user).length>0)
+        {
+            navigator('/profile')
+        }
+    },[user])
     const dispatch=useDispatch();
     const submitHandler=async(e)=>{
         e.preventDefault();

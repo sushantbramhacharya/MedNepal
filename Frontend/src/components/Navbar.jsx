@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useGetMedsQuery } from "../api/medsApi";
+import { useSelector } from 'react-redux';
 
 function Navbar() {
   // Sample product data
@@ -12,6 +13,12 @@ function Navbar() {
     searchTerm!==""?med.name.toLowerCase().includes(searchTerm.toLowerCase()):null
   );
 
+  //if user is present or not
+  const {user} = useSelector((state)=>state.userSlice);
+  //   const navigator=useNavigate();
+  //   useEffect(()=>{
+  //       navigator('/')
+  //   },[])
 
   const [mobileMenu, setmobileMenu] = useState(false);
   return (
@@ -69,22 +76,24 @@ function Navbar() {
             Store
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) => isActive ? "font-bold":""}
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
+        {user?._id&&<li>
           <NavLink
             to="/profile"
             className={({ isActive, isPending }) => isActive ? "font-bold":""}
           >
             Profile
           </NavLink>
-        </li>
+        </li>}
+        {!user?._id&&
+        <li>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => isActive ? "font-bold":""}
+          >
+            Login
+          </NavLink>
+        </li>}
+        
         <li>
           <NavLink
             to="/contact"
@@ -113,6 +122,7 @@ function Navbar() {
             Store
           </NavLink>
         </li>
+        {!user?._id&&
         <li>
           <NavLink
             to="/login"
@@ -120,15 +130,15 @@ function Navbar() {
           >
             Login
           </NavLink>
-        </li>
-        <li>
+        </li>}
+        {user?._id&&<li>
           <NavLink
             to="/profile"
-            className={({ isActive }) => isActive ? "font-bold":""}
+            className={({ isActive, isPending }) => isActive ? "font-bold":""}
           >
             Profile
           </NavLink>
-        </li>
+        </li>}
         <li>
           <NavLink
             to="/contact"

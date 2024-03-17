@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../api/userApi';
 import { setCredentials } from '../slices/userSlice';
 import { useDispatch,useSelector } from 'react-redux';
@@ -10,10 +10,14 @@ function LoginScreen() {
 
     const dispatch=useDispatch();
     const [login,{isLoading}]=useLoginMutation();
-
+    const {user} = useSelector((state)=>state.userSlice);
+    const navigator=useNavigate();
     useEffect(()=>{
-        // const user = useSelector(user);
-    })
+        if(Object.keys(user).length>0)
+        {
+            navigator('/profile')
+        }
+    },[user])
     
     const submitHandler=async(e)=>{
         e.preventDefault();

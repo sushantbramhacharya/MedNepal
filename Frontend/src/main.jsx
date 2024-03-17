@@ -16,6 +16,7 @@ import AdminDashboard from './screens/AdminDashboard.jsx'
 import ProductManagementScreen from './screens/ProductManagement.jsx'
 import AdminMainScreen from './screens/AdminMainScreen.jsx'
 import OrderManagement from './screens/OrderManagement.jsx'
+import UserOnlyRoute from './components/UserOnlyRoute.jsx'
 
 
 const router = createBrowserRouter(
@@ -27,7 +28,6 @@ const router = createBrowserRouter(
       <Route path='signup' element={<SignUpScreen/>}/>
       <Route path='contact' element={<ContactUs/>}/>
       <Route path='med/:id' element={<MedScreen/>}/>
-      <Route path='profile/' element={<ProfileScreen/>}/>
       <Route path='admin/' element={<AdminDashboard/>}>
         <Route path='' element={<div className='min-h-[70vh] flex justify-center flex-col'>
           <h1 className='text-center text-3xl'>Welcome to Admin Panel</h1>
@@ -35,6 +35,9 @@ const router = createBrowserRouter(
         </div>}/>
         <Route path='medsmanagement/' element={<ProductManagementScreen/>}/>
         <Route path='orders/' element={<OrderManagement/>}/>
+      </Route>
+      <Route path='user/' element={<UserOnlyRoute/>}>
+        <Route path='profile/' element={<ProfileScreen/>}/>
       </Route>
 
     </Route>

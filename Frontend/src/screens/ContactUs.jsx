@@ -3,7 +3,7 @@ import React from 'react';
 const ContactUs = () => {
   return (
     <>
-    <div className="mb-4 max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
+    <div className="mb-4 max-w-md mx-auto h-[75vh] p-6 bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
       <p className="mb-4">
         If you have any questions or inquiries, feel free to contact us at the

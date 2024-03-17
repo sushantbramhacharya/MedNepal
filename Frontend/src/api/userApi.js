@@ -16,8 +16,14 @@ export const userApi=api.injectEndpoints({
                 method:'POST',
                 body:data
             })
+        }),
+        logout:builder.mutation({
+            query:()=>({
+                url:BASE_URL+'/user/logout',
+                method:"DELETE"
+            })
         })
     })
 })
 
-export const {useLoginMutation,useRegisterMutation}=userApi
+export const {useLoginMutation,useRegisterMutation,useLogoutMutation}=userApi

@@ -22,9 +22,14 @@ function SignUpScreen() {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(emailRegex.test(email))
             {
-                console.log('valid')
+                try{
                 const user=await register({name,email,password}).unwrap();
                 dispatch(setCredentials({...user}));
+                }
+                catch(err)
+                {
+                    alert(err?.data?.message);
+                }
             }
             else{
                 alert("Enter valid Email");

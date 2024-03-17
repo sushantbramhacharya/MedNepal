@@ -19,9 +19,8 @@ export const loginUser=asyncHandler(async(req,res)=>{
         })
     }
     else{
-        res.status(400).json({
-            error:"Incorrect email or Password"
-        })
+        res.status(400)
+        throw new Error("Username or Password Incorrect");
     }
 })
 
@@ -45,6 +44,7 @@ export const registerUser=asyncHandler(async(req,res)=>{
         })
     }
     else{
+        res.status(400)
         throw new Error("User Already Exists");
     }
 })

@@ -16,11 +16,10 @@ function LoginScreen() {
         try{
             const user=await login({email,password}).unwrap();
             dispatch(setCredentials({...user}));
-            console.log({...user});
         }
         catch(err)
         {
-            console.log(err);
+            alert(err?.data?.message);
         }
     }
     return (

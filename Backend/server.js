@@ -3,6 +3,7 @@ import MedsRouter from "./routes/MedsRoute.js";
 import UserRoutes from "./routes/UserRoute.js";
 const PORT = 5000;
 import { connect } from "mongoose";
+import {errorHandler} from "./middlewares/errorMiddleware.js"
 
 //constants
 import { DB_URL } from "./constants.js";
@@ -26,8 +27,18 @@ app.use(express.json());
 // URL-encoded data should be strings or arrays (when extended is set to false) or objects (when extended is set to true).
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use("/api/meds", MedsRouter);
 app.use("/api/user",UserRoutes);
+
+app.get('/', (req, res) => {
+    // Simulate an error
+    throw new Error('Test error');
+
+});
+
+//using errorHandler
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);

@@ -1,8 +1,8 @@
 import {User} from '../models/userModel.js';
 import { generateToken } from '../utils/GenerateToken.js';
+import asyncHandler from '../middlewares/asyncHandler.js';
 
-
-export const loginUser=async(req,res)=>{
+export const loginUser=asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
 
     const user=await User.findOne({email});
@@ -23,10 +23,10 @@ export const loginUser=async(req,res)=>{
             error:"Incorrect email or Password"
         })
     }
-}
+})
 
 
-export const registerUser=async(req,res)=>{
+export const registerUser=asyncHandler(async(req,res)=>{
     const {name,email,password}=req.body;
     const userExists=await User.findOne({email});
     console.log(userExists);
@@ -45,8 +45,6 @@ export const registerUser=async(req,res)=>{
         })
     }
     else{
-        res.status(400).json({
-            error:"User Already Exists!!"
-        })
+        throw new Error("User Already Exists");
     }
-}
+})

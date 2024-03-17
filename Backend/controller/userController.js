@@ -39,7 +39,7 @@ export const registerUser=async(req,res)=>{
         res.json({
             _id:user._id,
             name:user.name,
-            email:user.name,
+            email:user.email,
             cart:user?.cart,
             shippingAddress:user?.shippingAddress
         })

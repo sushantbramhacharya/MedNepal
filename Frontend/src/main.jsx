@@ -27,7 +27,7 @@ const router = createBrowserRouter(
       <Route path='signup' element={<SignUpScreen/>}/>
       <Route path='contact' element={<ContactUs/>}/>
       <Route path='med/:id' element={<MedScreen/>}/>
-      <Route path='profile/:id' element={<ProfileScreen/>}/>
+      <Route path='profile/' element={<ProfileScreen/>}/>
       <Route path='admin/' element={<AdminDashboard/>}>
         <Route path='' element={<div className='min-h-[70vh] flex justify-center flex-col'>
           <h1 className='text-center text-3xl'>Welcome to Admin Panel</h1>

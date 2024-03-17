@@ -79,6 +79,14 @@ function Navbar() {
         </li>
         <li>
           <NavLink
+            to="/profile"
+            className={({ isActive, isPending }) => isActive ? "font-bold":""}
+          >
+            Profile
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/contact"
             className={({ isActive }) => isActive ? "font-bold":""}
           >
@@ -111,6 +119,14 @@ function Navbar() {
             className={({ isActive }) => isActive ? "font-bold":""}
           >
             Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => isActive ? "font-bold":""}
+          >
+            Profile
           </NavLink>
         </li>
         <li>

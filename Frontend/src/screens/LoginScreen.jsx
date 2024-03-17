@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLoginMutation } from '../api/userApi';
 import { setCredentials } from '../slices/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 function LoginScreen() {
     const [email,setEmail]=useState('');
@@ -10,6 +10,10 @@ function LoginScreen() {
 
     const dispatch=useDispatch();
     const [login,{isLoading}]=useLoginMutation();
+
+    useEffect(()=>{
+        // const user = useSelector(user);
+    })
     
     const submitHandler=async(e)=>{
         e.preventDefault();

@@ -79,14 +79,6 @@ function Navbar() {
         </li>
         <li>
           <NavLink
-            to="/signup"
-            className={({ isActive }) => isActive ? "font-bold":""}
-          >
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/contact"
             className={({ isActive }) => isActive ? "font-bold":""}
           >
@@ -119,14 +111,6 @@ function Navbar() {
             className={({ isActive }) => isActive ? "font-bold":""}
           >
             Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/signup"
-            className={({ isActive }) => isActive ? "font-bold":""}
-          >
-            Sign Up
           </NavLink>
         </li>
         <li>

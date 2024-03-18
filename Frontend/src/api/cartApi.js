@@ -9,8 +9,13 @@ export const cartApi=api.injectEndpoints({
                 method:"POST",
                 body:data
             })
-        })
+        }),
+        getCartItems:builder.query({
+            query:()=>({
+                url:BASE_URL+'/cart/getcarts'
+            })
+        }),
     })
 })
 
-export const {useAddToCartMutation} =cartApi
+export const {useAddToCartMutation,useGetCartItemsQuery} = cartApi;

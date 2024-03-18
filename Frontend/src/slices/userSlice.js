@@ -13,9 +13,13 @@ const userSlice= createSlice({
         logoutUser:(state,action)=>{
             state.user="";
             localStorage.removeItem('user');
+        },
+        setCarts:(state,action)=>{
+            state.user.cart=action.payload;
+            localStorage.setItem('user',JSON.stringify(state.user));
         }
     }
 })
 
-export const { setCredentials,logoutUser } = userSlice.actions
+export const { setCredentials,logoutUser,setCarts } = userSlice.actions
 export default userSlice.reducer

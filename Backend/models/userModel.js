@@ -16,6 +16,10 @@ const userSchema = new Schema({
     },
     cart:[
         {
+            name:String,
+            image:String,
+            description:String,
+            pricePerMed:Number,
             medId:{
                 type:Schema.Types.ObjectId,
                 ref:"Med"

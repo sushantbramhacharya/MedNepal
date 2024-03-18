@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {  useLogoutMutation } from "../api/userApi";
-import { logoutUser } from "../slices/userSlice";
+import { logoutUser,setCarts } from "../slices/userSlice";
+import { useGetCartItemsQuery } from "../api/cartApi";
 
 const ProfileScreen = () => {
   
   const dispatch = useDispatch();
   const navigator=useNavigate();
+
+  const {data:fetchedCartData,refetch}=useGetCartItemsQuery();
+  
+  useEffect(()=>{
+    refetch();
+    dispatch(setCarts(fetchedCartData));
+  },[fetchedCartData])
+  
   
   const {user} = useSelector((state)=>state.userSlice);
  
   const handleDeleteCartItem = (index) => {
     
   };
+
   const [logout,{isLoading}]=useLogoutMutation();
 
   const logoutUserHandler=async()=>{
@@ -37,23 +47,30 @@ const ProfileScreen = () => {
 
         <div className="cart mt-4">
           <h3 className="text-lg font-semibold mb-2">Cart</h3>
-          <div className="grid grid-cols-2 gap-4">
-            {user.cart.map((item, index) => (
+          <p className="text-right italic text-slate-500">* Editing can be done by adding product again</p>
+          <div className="grid grid-cols-2 gap-4 bg-slate-300 p-3">
+            {user?.cart?.map((item, index) => (
+              
               <div
                 key={index}
                 className="flex items-center bg-white rounded-lg shadow-lg p-4"
               >
+                <Link className="inline-block" to={"/med/"+item.medId}>
                 <img
-                  src={`images/${item.name.toLowerCase()}.jpg`}
+                  src={item.image}
                   alt={item.name}
                   className="w-16 h-16 rounded-full object-cover"
                 />
+                </Link>
+                <Link className="inline-block" to={"/med/"+item.medId}>
                 <div className="ml-4">
+                  
                   <p className="text-gray-800">{item.name}</p>
                   <p className="text-gray-600">
-                    {item.qty}x ${item.price}
+                    {item.qty}x Rs {item.pricePerMed} : Rs {item.price}
                   </p>
                 </div>
+                </Link>
                 <button
                   onClick={() => handleDeleteCartItem(index)}
                   className="ml-auto focus:outline-none"
@@ -62,30 +79,32 @@ const ProfileScreen = () => {
                 </button>
               </div>
             ))}
+            <div></div>
+            <button className="text-white bg-green-500 inline-block w-1/3 justify-self-end mr-4 rounded-md p-2">Order Items</button>
           </div>
         </div>
 
-        {/* <div className="shipping-address mt-4 bg-white rounded-lg shadow-lg p-4">
+        <div className="shipping-address mt-4 bg-white rounded-lg shadow-lg p-4">
           <h3 className="text-lg font-semibold mb-2">Shipping Address</h3>
           <div className="text-gray-600">
             <p>
               <span className="font-semibold">Street:</span>{" "}
-              {user.shippingAddress.street}
+              {user?.shippingAddress?.street}
             </p>
             <p>
               <span className="font-semibold">Municipality:</span>{" "}
-              {user.shippingAddress.municipality}
+              {user?.shippingAddress?.municipality}
             </p>
             <p>
               <span className="font-semibold">Ward No:</span>{" "}
-              {user.shippingAddress.wardNo}
+              {user?.shippingAddress?.wardNo}
             </p>
             <p>
               <span className="font-semibold">District:</span>{" "}
-              {user.shippingAddress.district}
+              {user?.shippingAddress?.district}
             </p>
           </div>
-        </div> */}
+        </div>
         {/* <div className="orders mt-4">
           <h3 className="text-lg font-semibold mb-2">Orders</h3>
           {user?.orders?.map((order) => (

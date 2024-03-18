@@ -1,16 +1,16 @@
 import React,{useState} from 'react';
 import Dropdown from '../components/DropDown';
-import {Link,useParams} from 'react-router-dom';
+import {Link,useNavigate,useParams} from 'react-router-dom';
 import {useGetMedByIdQuery} from '../api/medsApi'
 import Rating from '../components/Rating';
 import { useAddToCartMutation } from '../api/cartApi';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../slices/userSlice';
+import { setCarts } from '../slices/userSlice';
 
 const MedScreen = () => {
   const {id:medId}=useParams();
-  const [cartQty,setCartQty]=useState(0);
-
+  const [cartQty,setCartQty]=useState(1);
+  const navigate=useNavigate();
   const dispatch=useDispatch();
 
   const {isError,isLoading,data:med}=useGetMedByIdQuery(medId);
@@ -24,10 +24,14 @@ const MedScreen = () => {
       qty:Number(cartQty),
       price:cartPrice,
       shippingPrice:0,
-      totalPrice:cartPrice+0
+      totalPrice:cartPrice+0,
+      name:med.name,
+      image:med.image,
+      description:med.description,
+      pricePerMed:med.price,
     }).unwrap();
-    dispatch(setCredentials(user));
-    console.log(user);
+    dispatch(setCarts(user));
+    alert('Added to cart successfully');
   }
   
   

@@ -1,7 +1,17 @@
 import asyncHandler from '../middlewares/asyncHandler.js';
 import { User } from "../models/userModel.js";
 export const addToCart=asyncHandler(async(req,res)=>{
-    const {medId,qty,price,shippingPrice,totalPrice}=req.body;
+    const {
+        medId,
+        qty,
+        price,
+        shippingPrice,
+        totalPrice,
+        name,
+        image,
+        description,
+        pricePerMed,
+    }=req.body;
     //inserting into user cart 
     //req._id is user id from auth middleware
     
@@ -14,6 +24,10 @@ export const addToCart=asyncHandler(async(req,res)=>{
     if(existingCartItemIndex===-1)
     {
     user.cart.push({
+        name,
+        image,
+        description,
+        pricePerMed,
         medId,
         qty,
         price,
@@ -25,7 +39,16 @@ export const addToCart=asyncHandler(async(req,res)=>{
         user.cart[existingCartItemIndex].price=price;
         user.cart[existingCartItemIndex].shippingPrice=shippingPrice;
         user.cart[existingCartItemIndex].totalPrice=totalPrice;
+        user.cart[existingCartItemIndex].name=name;
+        user.cart[existingCartItemIndex].image=image;
+        user.cart[existingCartItemIndex].description=description;
+        user.cart[existingCartItemIndex].pricePerMed=pricePerMed;
     }         
     await user.save();
-    res.json(user);
+    res.json(user.cart);
+})
+
+export const fetchCartItems=asyncHandler(async(req,res)=>{
+    const user=await User.findById(req.user._id);
+    res.json(user.cart);
 })

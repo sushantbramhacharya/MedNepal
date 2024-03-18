@@ -138,7 +138,7 @@ function Navbar() {
           >
             Profile
             {
-            user.cart.length>0&&
+            user?.cart?.length>0&&
             <span className="p-1 inline-block bg-red-500 mx-1 text-sm rounded-lg">
               {user.cart.length}
             </span>

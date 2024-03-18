@@ -65,7 +65,7 @@ const ProfileScreen = () => {
           </div>
         </div>
 
-        <div className="shipping-address mt-4 bg-white rounded-lg shadow-lg p-4">
+        {/* <div className="shipping-address mt-4 bg-white rounded-lg shadow-lg p-4">
           <h3 className="text-lg font-semibold mb-2">Shipping Address</h3>
           <div className="text-gray-600">
             <p>
@@ -85,8 +85,8 @@ const ProfileScreen = () => {
               {user.shippingAddress.district}
             </p>
           </div>
-        </div>
-        <div className="orders mt-4">
+        </div> */}
+        {/* <div className="orders mt-4">
           <h3 className="text-lg font-semibold mb-2">Orders</h3>
           {user?.orders?.map((order) => (
             <div
@@ -130,7 +130,7 @@ const ProfileScreen = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
         <button onClick={logoutUserHandler} className="bg-red-500 text-white rounded-lg px-2 py-1 shadow-md hover:bg-red-600">Logout</button>
       </div>
     </div>

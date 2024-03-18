@@ -1,14 +1,35 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Dropdown from '../components/DropDown';
 import {Link,useParams} from 'react-router-dom';
 import {useGetMedByIdQuery} from '../api/medsApi'
 import Rating from '../components/Rating';
+import { useAddToCartMutation } from '../api/cartApi';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../slices/userSlice';
 
 const MedScreen = () => {
   const {id:medId}=useParams();
+  const [cartQty,setCartQty]=useState(0);
+
+  const dispatch=useDispatch();
 
   const {isError,isLoading,data:med}=useGetMedByIdQuery(medId);
+  const [addToCart,{isLoading:isLoadingCart}]=useAddToCartMutation();
 
+  const addToCartHandler=async(e)=>{
+    e.preventDefault();
+    const cartPrice=(Number(cartQty)*med.price);
+    const user=await addToCart({
+      medId,
+      qty:Number(cartQty),
+      price:cartPrice,
+      shippingPrice:0,
+      totalPrice:cartPrice+0
+    }).unwrap();
+    dispatch(setCredentials(user));
+    console.log(user);
+  }
+  
   
   return (
     isLoading?<h1>Loading</h1>:
@@ -24,11 +45,11 @@ const MedScreen = () => {
           <p className="mt-1 text-lg text-gray-700">{med.description}</p>
           <p className="mt-4 text-2xl font-bold">Rs.{med.price}</p>
           <br />
-          <Dropdown stockNo={med.inStock}/>
+          <Dropdown stockNo={med.inStock} setCartQty={setCartQty}/>
           <br />
           <br />
           <Rating rating={med.rating}/>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-xl">Add to Cart</button>
+          <button onClick={addToCartHandler} disabled={med.inStock<1} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-xl">Add to Cart</button>
           
         </div>
         <div className="mt-4 md:mt-0 md:ml-4 md:flex-shrink-0">

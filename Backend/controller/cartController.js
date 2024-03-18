@@ -5,7 +5,7 @@ export const addToCart=asyncHandler(async(req,res)=>{
     //inserting into user cart 
     //req._id is user id from auth middleware
     
-    const user=await User.findById(req.body._id);
+    const user=await User.findById(req.user._id);
     const existingCartItemIndex = user.cart.findIndex(cartItem => {
         
         return String(cartItem.medId) === medId});

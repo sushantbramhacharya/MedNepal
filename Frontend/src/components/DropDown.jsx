@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Dropdown = ({stockNo}) => {
+const Dropdown = ({stockNo,setCartQty}) => {
   return (
     <div className="inline-block relative">
-      <select
+      <select onChange={(e)=>setCartQty(e.target.value)}
         className={"block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:ring "}
         disabled={stockNo<1}
       >

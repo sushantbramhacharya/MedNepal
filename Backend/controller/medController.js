@@ -1,5 +1,6 @@
 import { Med } from "../models/medModel.js";
 import asyncHandler from '../middlewares/asyncHandler.js';
+import { User } from "../models/userModel.js";
 
 export const fetchMeds = asyncHandler(async (req, res, next) => {
 
@@ -15,8 +16,4 @@ export const fetchMedsByID=asyncHandler(async(req,res)=>{
 export const fetchMedsSorted=asyncHandler(async(req,res)=>{
     const meds=await Med.find().sort({price:Number(req.params.sort)});
     res.status(200).json(meds);
-})
-
-export const addToCart=asyncHandler(async(req,res)=>{
-    
 })

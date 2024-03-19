@@ -1,16 +1,17 @@
 import React,{useState} from 'react';
-import Dropdown from '../components/DropDown';
+import Dropdown from '../components/MedScreen/DropDown';
 import {Link,useNavigate,useParams} from 'react-router-dom';
 import {useGetMedByIdQuery} from '../api/medsApi'
-import Rating from '../components/Rating';
+import Rating from '../components/MedScreen/Rating';
 import { useAddToCartMutation } from '../api/cartApi';
 import { useDispatch } from 'react-redux';
 import { setCarts } from '../slices/userSlice';
+import Review from '../components/MedScreen/Review';
 
 const MedScreen = () => {
   const {id:medId}=useParams();
   const [cartQty,setCartQty]=useState(1);
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   const dispatch=useDispatch();
 
   const {isError,isLoading,data:med}=useGetMedByIdQuery(medId);
@@ -18,6 +19,7 @@ const MedScreen = () => {
 
   const addToCartHandler=async(e)=>{
     e.preventDefault();
+    try{
     const cartPrice=(Number(cartQty)*med.price);
     const user=await addToCart({
       medId,
@@ -32,6 +34,10 @@ const MedScreen = () => {
     }).unwrap();
     dispatch(setCarts(user));
     alert('Added to cart successfully');
+    }
+    catch(e){
+      alert('Please Login');
+    }
   }
   
   
@@ -59,7 +65,9 @@ const MedScreen = () => {
         <div className="mt-4 md:mt-0 md:ml-4 md:flex-shrink-0">
           <img className="h-64 w-auto mx-auto rounded-md shadow-md" src={med.image} alt={med.name} />
         </div>
+        
       </div>
+          <Review/>
     </div>
   </div>)
   );

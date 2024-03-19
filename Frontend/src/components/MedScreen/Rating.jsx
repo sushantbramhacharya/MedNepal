@@ -3,6 +3,8 @@ import { FaStar,FaStarHalfAlt,FaRegStar   } from "react-icons/fa";
 
 const Rating = ({rating}) => {
     const ratingCounter=()=>{
+        if(rating.length<1)
+            return 0;
         const totalRating=rating.reduce((acc,val)=>(
           acc+val.rate
         ),0);
@@ -30,7 +32,7 @@ const Rating = ({rating}) => {
     </span>
 
         <span className="ml-1 text-[0.9rem]">
-            ({rating.length?rating.length:null})
+            ({rating.length?rating.length:0})
         </span>
     </div>
   )

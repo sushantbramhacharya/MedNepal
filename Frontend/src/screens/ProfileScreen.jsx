@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {  useLogoutMutation } from "../api/userApi";
 import { logoutUser,setCarts } from "../slices/userSlice";
-import { useGetCartItemsQuery } from "../api/cartApi";
+import { useDeleteFromCartMutation, useGetCartItemsQuery } from "../api/cartApi";
 
 const ProfileScreen = () => {
   
@@ -21,8 +21,17 @@ const ProfileScreen = () => {
   
   const {user} = useSelector((state)=>state.userSlice);
  
-  const handleDeleteCartItem = (index) => {
-    
+  const [deleteFromCart,{isLoadingDeleteFromCart}]=useDeleteFromCartMutation();
+  const handleDeleteCartItem = async(id) => {
+    //in async/await block use try catch
+    try{
+      const res=await deleteFromCart({cartId:id}).unwrap();
+      alert(res.name+" Deleted successfully");
+      refetch();
+    }catch(error)
+    {
+      alert(error?.data?.message);
+    }
   };
 
   const [logout,{isLoading}]=useLogoutMutation();
@@ -72,7 +81,7 @@ const ProfileScreen = () => {
                 </div>
                 </Link>
                 <button
-                  onClick={() => handleDeleteCartItem(index)}
+                  onClick={() => handleDeleteCartItem(item._id)}
                   className="ml-auto focus:outline-none"
                 >
                   <FaTrashAlt className="text-red-500 cursor-pointer" />

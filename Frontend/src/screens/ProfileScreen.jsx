@@ -16,14 +16,28 @@ const ProfileScreen = () => {
   const navigator=useNavigate();
 
   const {data:fetchedCartData,refetch}=useGetCartItemsQuery();
+  const {user} = useSelector((state)=>state.userSlice);
   
   useEffect(()=>{
     refetch();
     dispatch(setCarts(fetchedCartData));
+    
   },[fetchedCartData])
   
+  useEffect(()=>{
+    const tempCartPrice=user?.cart?.reduce((acc,item)=>acc+item.totalPrice,0)
+    setCartPrice(tempCartPrice);
+    if(tempCartPrice<800){
+      setCartShippingPrice(100);
+      setCartTotalPrice(tempCartPrice+100);
+    }else{
+      setCartShippingPrice(0);
+      setCartTotalPrice(tempCartPrice+0);
+    }
+
+
+  },[user])
   
-  const {user} = useSelector((state)=>state.userSlice);
  
   const [deleteFromCart,{isLoadingDeleteFromCart}]=useDeleteFromCartMutation();
   const handleDeleteCartItem = async(id) => {
@@ -93,9 +107,9 @@ const ProfileScreen = () => {
               </div>
             ))}
             <div className="col-span-2 bg-slate-400 p-2 rounded-lg flex justify-end gap-5 items-center">
-              <p className="text-white">Price: {cartPrice}</p>
-              <p className="text-white">Shipping Price: {cartShippingPrice}</p>
-              <p className="text-white">Total Price: {cartTotalPrice}</p>
+              <p className="text-white">Price: Rs.{cartPrice}</p>
+              <p className="text-white">Shipping Price: Rs.{cartShippingPrice}</p>
+              <p className="text-white">Total Price: Rs.{cartTotalPrice}</p>
             <button className="text-white justify-self-end bg-green-500 inline-block w-1/4  mr-4 rounded-md p-2 ">Order Items</button>
             </div>
           </div>

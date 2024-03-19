@@ -4,6 +4,7 @@ import express from "express";
 import MedsRouter from "./routes/MedsRoute.js";
 import UserRoutes from "./routes/UserRoute.js";
 import CartRouter from "./routes/CartRoutes.js";
+import KhaltiRouter from "./routes/KhaltiRoute.js";
 
 //DB and ODM
 import { connect } from "mongoose";
@@ -40,6 +41,7 @@ app.use(cookieParser());
 app.use("/api/meds", MedsRouter);
 app.use("/api/user",UserRoutes);
 app.use("/api/cart",CartRouter);
+app.use("/api/khalti",KhaltiRouter);
 
 
 // app.get('/', (req, res) => {

@@ -21,8 +21,15 @@ export const cartApi=api.injectEndpoints({
                 method:"DELETE",
                 body:data
             })
+        }),
+        orderItems:builder.mutation({
+            query:(data)=>({
+                url:BASE_URL+'/khalti/pay',
+                method:"POST",
+                body:data
+            })
         })
     })
 })
 
-export const {useAddToCartMutation,useGetCartItemsQuery,useDeleteFromCartMutation} = cartApi;
+export const {useAddToCartMutation,useGetCartItemsQuery,useDeleteFromCartMutation,useOrderItemsMutation} = cartApi;

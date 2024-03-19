@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {  useLogoutMutation } from "../api/userApi";
 import { logoutUser,setCarts } from "../slices/userSlice";
-import { useDeleteFromCartMutation, useGetCartItemsQuery } from "../api/cartApi";
+import { useDeleteFromCartMutation, useGetCartItemsQuery, useOrderItemsMutation } from "../api/cartApi";
 
 const ProfileScreen = () => {
   
@@ -60,6 +60,21 @@ const ProfileScreen = () => {
     navigator('/login')
   }
 
+  const [orderItems,{isLoadingOrderItems}]=useOrderItemsMutation();
+
+  const orderItemsHandler=async()=>{
+    try{
+      const payment=await orderItems({
+        cartPrice,
+        cartShippingPrice,
+        cartTotalPrice
+      });
+      console.log(payment);
+      window.open(payment.data.payment_url, '_blank');
+    }catch(err){
+      alert(err?.data?.message);
+    }
+  }
 
   return (
     <div className="profile-screen bg-gray-100 min-h-screen py-12">
@@ -110,9 +125,10 @@ const ProfileScreen = () => {
               <p className="text-white">Price: Rs.{cartPrice}</p>
               <p className="text-white">Shipping Price: Rs.{cartShippingPrice}</p>
               <p className="text-white">Total Price: Rs.{cartTotalPrice}</p>
-            <button className="text-white justify-self-end bg-green-500 inline-block w-1/4  mr-4 rounded-md p-2 ">Order Items</button>
+            <button onClick={orderItemsHandler} className="text-white justify-self-end bg-green-500 inline-block w-1/4  mr-4 rounded-md p-2 ">Order Items</button>
             </div>
           </div>
+            <p className="text-right italic text-slate-500">Payment Powered By <a href="https://khalti.com" target="_blank" className="font-bold text-purple-600">Khalti</a> </p>
         </div>
 
         <div className="shipping-address mt-4 bg-white rounded-lg shadow-lg p-4">

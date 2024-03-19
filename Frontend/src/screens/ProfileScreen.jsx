@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,10 @@ import { useDeleteFromCartMutation, useGetCartItemsQuery } from "../api/cartApi"
 
 const ProfileScreen = () => {
   
+  const [cartPrice, setCartPrice] = useState(0);
+  const [cartShippingPrice, setCartShippingPrice] = useState(0);
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
+
   const dispatch = useDispatch();
   const navigator=useNavigate();
 
@@ -76,7 +80,7 @@ const ProfileScreen = () => {
                   
                   <p className="text-gray-800">{item.name}</p>
                   <p className="text-gray-600">
-                    {item.qty}x Rs {item.pricePerMed} : Rs {item.price}
+                    {item.qty}x Rs {item.pricePerMed} : Rs {item.totalPrice}
                   </p>
                 </div>
                 </Link>
@@ -88,8 +92,12 @@ const ProfileScreen = () => {
                 </button>
               </div>
             ))}
-            <div></div>
-            <button className="text-white bg-green-500 inline-block w-1/3 justify-self-end mr-4 rounded-md p-2">Order Items</button>
+            <div className="col-span-2 bg-slate-400 p-2 rounded-lg flex justify-end gap-5 items-center">
+              <p className="text-white">Price: {cartPrice}</p>
+              <p className="text-white">Shipping Price: {cartShippingPrice}</p>
+              <p className="text-white">Total Price: {cartTotalPrice}</p>
+            <button className="text-white justify-self-end bg-green-500 inline-block w-1/4  mr-4 rounded-md p-2 ">Order Items</button>
+            </div>
           </div>
         </div>
 

@@ -25,8 +25,6 @@ const userSchema = new Schema({
                 ref:"Med"
             },
             qty:Number,
-            price:Number,
-            shippingPrice:Number,
             totalPrice:Number,
         }
     ],

@@ -29,14 +29,10 @@ export const addToCart = asyncHandler(async (req, res) => {
       pricePerMed,
       medId,
       qty,
-      price,
-      shippingPrice,
       totalPrice,
     });
   } else {
     user.cart[existingCartItemIndex].qty = qty;
-    user.cart[existingCartItemIndex].price = price;
-    user.cart[existingCartItemIndex].shippingPrice = shippingPrice;
     user.cart[existingCartItemIndex].totalPrice = totalPrice;
     user.cart[existingCartItemIndex].name = name;
     user.cart[existingCartItemIndex].image = image;

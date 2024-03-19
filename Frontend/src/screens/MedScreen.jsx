@@ -24,9 +24,7 @@ const MedScreen = () => {
     const user=await addToCart({
       medId,
       qty:Number(cartQty),
-      price:cartPrice,
-      shippingPrice:0,
-      totalPrice:cartPrice+0,
+      totalPrice:cartPrice,
       name:med.name,
       image:med.image,
       description:med.description,

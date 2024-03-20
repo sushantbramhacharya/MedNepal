@@ -29,8 +29,14 @@ export const userApi=api.injectEndpoints({
                 method:"PUT",
                 body:data
             })
+        }),
+        orderFetch:builder.query({
+            query:()=>({
+                url:BASE_URL+'/user/fetchorders',
+                method:"Get"
+            })
         })
     })
 })
 
-export const {useLoginMutation,useRegisterMutation,useLogoutMutation,useShippingInfoUpdateMutation}=userApi
+export const {useLoginMutation,useRegisterMutation,useLogoutMutation,useShippingInfoUpdateMutation,useOrderFetchQuery}=userApi

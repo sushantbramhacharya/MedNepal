@@ -35,7 +35,7 @@ const ProfileScreen = () => {
   useEffect(()=>{
     const tempCartPrice=user?.cart?.reduce((acc,item)=>acc+item.totalPrice,0)
     setCartPrice(tempCartPrice);
-    if(tempCartPrice<800){
+    if(tempCartPrice<800&&tempCartPrice>0){
       setCartShippingPrice(100);
       setCartTotalPrice(tempCartPrice+100);
     }else{
@@ -81,8 +81,7 @@ const ProfileScreen = () => {
         cartShippingPrice,
         cartTotalPrice
       });
-      console.log(payment);
-      window.open(payment.data.payment_url, '_blank');
+      window.open(payment.data.payment_url);
     }catch(err){
       alert(err?.data?.message);
     }
@@ -190,51 +189,9 @@ const ProfileScreen = () => {
 
 </form>
 
-        {/* <div className="orders mt-4">
-          <h3 className="text-lg font-semibold mb-2">Orders</h3>
-          {user?.orders?.map((order) => (
-            <div
-              key={order.orderId}
-              className="order mb-4 bg-white rounded-lg shadow-lg p-4"
-            >
-              <p className="text-gray-600">Order ID: {order.orderId}</p>
-              <p className="text-gray-600">
-                Payment Information: {order.paymentInformation}
-              </p>
-              <div className="grid grid-cols-2 gap-4 mt-2">
-                {order.order.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center ${
-                      item.delivered ? "bg-green-200" : "bg-red-200"
-                    } rounded-lg p-2`}
-                  >
-                    <img
-                      src={`images/${item.name.toLowerCase()}.jpg`}
-                      alt={item.name}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div className="ml-2">
-                      <p className="text-gray-800">{item.name}</p>
-                      <p className="text-gray-600">
-                        {item.qty}x ${item.price}
-                      </p>
-                      {item.delivered ? (
-                        <p className="text-green-700 font-semibold">
-                          Delivered
-                        </p>
-                      ) : (
-                        <p className="text-red-700 font-semibold">
-                          Not Delivered
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div> */}
+        <Link to='/user/orders' className="bg-blue-500 mt-3 mx-3 text-white rounded-lg px-2 py-1 shadow-md hover:bg-blue-600">
+          Check Orders
+        </Link>
         <button onClick={logoutUserHandler} className="bg-red-500 mt-3 mx-3 text-white rounded-lg px-2 py-1 shadow-md hover:bg-red-600">Logout</button>
       </div>
     </div>

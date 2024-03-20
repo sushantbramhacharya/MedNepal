@@ -17,6 +17,7 @@ import ProductManagementScreen from './screens/ProductManagement.jsx'
 import AdminMainScreen from './screens/AdminMainScreen.jsx'
 import OrderManagement from './screens/OrderManagement.jsx'
 import UserOnlyRoute from './components/UserOnlyRoute.jsx'
+import ShowOrders from './components/ShowOrders.jsx'
 
 
 const router = createBrowserRouter(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path='user/' element={<UserOnlyRoute/>}>
         <Route path='profile/' element={<ProfileScreen/>}/>
+        <Route path='orders/' element={<ShowOrders/>}/>
       </Route>
 
     </Route>

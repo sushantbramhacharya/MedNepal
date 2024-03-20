@@ -1,28 +1,46 @@
-import { Schema } from "mongoose"
+import { Schema,model } from "mongoose"
 export const orderSchema= new Schema({
-
-    orderedBy:{
-        type:Schema.Types.ObjectId,
-        ref:"User"
-    },
-    paymentInformation:String,
-    delivered:{
-        type:Boolean,
-        required:true,
-        default:false
-    },
-    order:[
-    {
-        medId:{
+        userId:{
             type:Schema.Types.ObjectId,
             ref:"Med"
-        },
-        qty:Number,
-        price:Number,
-        shippingPrice:Number,
-        totalPrice:Number,
-    }
-    ]
-})
+            },
+        order:[
+            {
+                name:String,
+                image:String,
+                description:String,
+                pricePerMed:Number,
+                medId:{
+                    type:Schema.Types.ObjectId,
+                    ref:"Med"
+                },
+                qty:Number,
+                totalPrice:Number,
+            }
+        ],
+        paymentVerification:{
+            pidx: String,
+            total_amount: Number,
+            status: String,
+            transaction_id: String,
+            fee: Number,
+            refunded: Boolean
+         },
+         paymentResponse:{
+            pidx:String,
+            transaction_id:String,
+            tidx:String,
+            amount:Number,
+            total_amount:Number,
+            mobile:String,
+            status:String,
+            purchase_order_id:String,
+            purchase_order_name:String
+         },
+        delivered:{
+            type:Boolean,
+            default:false
+        }
+},{timestamps:true})
 
-const orderModel=model("Order",orderSchema);
+export const Order=model("Order",orderSchema);

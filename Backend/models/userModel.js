@@ -35,6 +35,6 @@ const userSchema = new Schema({
         phone:Number,
         district:String
     },
-})
+},{timestamps:true})
 
 export const User = model("User",userSchema);

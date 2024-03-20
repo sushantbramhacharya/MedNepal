@@ -1,4 +1,5 @@
 import { User } from "../models/userModel.js";
+import {Order} from "../models/orderModel.js"
 import { generateToken } from "../utils/GenerateToken.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
@@ -67,4 +68,9 @@ export const updateShipping = asyncHandler(async (req, res) => {
 };
   const updatedUser=await user.save();
   res.json(updatedUser.shippingAddress);
+});
+
+export const fetchOrder = asyncHandler( async (req, res) => {
+  const order=await Order.find({userId:req.user._id});
+  res.json(order);
 });

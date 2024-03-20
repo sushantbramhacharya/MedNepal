@@ -22,8 +22,15 @@ export const userApi=api.injectEndpoints({
                 url:BASE_URL+'/user/logout',
                 method:"DELETE"
             })
+        }),
+        shippingInfoUpdate:builder.mutation({
+            query:(data)=>({
+                url:BASE_URL+'/user/shipping',
+                method:"PUT",
+                body:data
+            })
         })
     })
 })
 
-export const {useLoginMutation,useRegisterMutation,useLogoutMutation}=userApi
+export const {useLoginMutation,useRegisterMutation,useLogoutMutation,useShippingInfoUpdateMutation}=userApi

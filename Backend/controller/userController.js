@@ -51,5 +51,20 @@ export const logoutUser = (req, res) => {
     // When you pass 0 as an argument to create a Date object in JavaScript, it represents the date January 1, 1970, 00:00:00 UTC, which is also known as the Unix epoch.
     expires: new Date(0),
   });
-  res.status(200).json({message:"Logged out Successfully"});
+  res.status(200).json({ message: "Logged out Successfully" });
 };
+
+export const updateShipping = asyncHandler(async (req, res) => {
+  const { street, municipality, wardNo, phone, district } = req.body;
+  const user = await User.findById(req.user._id);
+  console.log(user);
+  user.shippingAddress={
+    street,
+    municipality,
+    wardNo,
+    phone,
+    district
+};
+  const updatedUser=await user.save();
+  res.json(updatedUser.shippingAddress);
+});

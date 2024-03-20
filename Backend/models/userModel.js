@@ -32,6 +32,7 @@ const userSchema = new Schema({
         street:String,
         municipality:String,
         wardNo:Number,
+        phone:Number,
         district:String
     },
 })

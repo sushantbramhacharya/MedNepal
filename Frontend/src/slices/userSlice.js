@@ -17,9 +17,13 @@ const userSlice= createSlice({
         setCarts:(state,action)=>{
             state.user.cart=action.payload;
             localStorage.setItem('user',JSON.stringify(state.user));
+        },
+        setShipping:(state,action)=>{
+            state.user.shippingAddress=action.payload;
+            localStorage.setItem('user',JSON.stringify(state.user));
         }
     }
 })
 
-export const { setCredentials,logoutUser,setCarts } = userSlice.actions
+export const { setCredentials,logoutUser,setCarts,setShipping } = userSlice.actions
 export default userSlice.reducer

@@ -7,6 +7,7 @@ import { useAddToCartMutation } from '../api/cartApi';
 import { useDispatch } from 'react-redux';
 import { setCarts } from '../slices/userSlice';
 import Review from '../components/MedScreen/Review';
+import MedReviews from '../components/MedReview';
 
 const MedScreen = () => {
   const {id:medId}=useParams();
@@ -66,6 +67,7 @@ const MedScreen = () => {
         
       </div>
           <Review/>
+          <MedReviews/>
     </div>
   </div>)
   );

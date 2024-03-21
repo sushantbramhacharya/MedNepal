@@ -18,8 +18,17 @@ const medSchema=new Schema({
     },
     rating:[
         {
+            review:String,
             rater:String,
-            rate:Number
+            rate:Number,
+            raterId:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            date:{
+                type:String,
+                default:Date.now
+            }
         }
     ],
     inStock:{

@@ -82,6 +82,7 @@ const ProfileScreen = () => {
         cartTotalPrice
       });
       window.open(payment.data.payment_url);
+      window.close();
     }catch(err){
       alert(err?.data?.message);
     }

@@ -10,7 +10,7 @@ export const generateToken=async(res,userId)=>{
     res.cookie('jwt',token,{
         httpOnly:true,
         secure:PRODUCTION,
-        sameSite:"strict",
+        sameSite:"lax",
         maxAge: 24*60*60*1000//1day
     })
 }

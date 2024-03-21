@@ -3,10 +3,8 @@ import asyncHandler from '../middlewares/asyncHandler.js';
 import { User } from "../models/userModel.js";
 
 export const fetchMeds = asyncHandler(async (req, res, next) => {
-
-        const meds = await Med.find({});
-        res.status(200).json(meds);
-    
+    const meds = await Med.find({});
+    res.status(200).json(meds);
 });
 
 export const fetchMedsByID=asyncHandler(async(req,res)=>{

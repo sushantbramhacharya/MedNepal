@@ -4,7 +4,7 @@ import {Link,useNavigate,useParams} from 'react-router-dom';
 import {useGetMedByIdQuery} from '../api/medsApi'
 import Rating from '../components/MedScreen/Rating';
 import { useAddToCartMutation } from '../api/cartApi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCarts } from '../slices/userSlice';
 import Review from '../components/MedScreen/Review';
 import MedReviews from '../components/MedReview';
@@ -14,6 +14,8 @@ const MedScreen = () => {
   const [cartQty,setCartQty]=useState(1);
   // const navigate=useNavigate();
   const dispatch=useDispatch();
+
+  const {user} = useSelector((state)=>state.userSlice);
 
   const {isError,isLoading,data:med}=useGetMedByIdQuery(medId);
   const [addToCart,{isLoading:isLoadingCart}]=useAddToCartMutation();
@@ -58,6 +60,7 @@ const MedScreen = () => {
           <br />
           <br />
           <Rating rating={med.rating}/>
+          
           <button onClick={addToCartHandler} disabled={med.inStock<1} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-xl">Add to Cart</button>
           
         </div>
@@ -66,7 +69,8 @@ const MedScreen = () => {
         </div>
         
       </div>
-          <Review/>
+      {user._id&&<Review/>}
+      <h2 className='text-xl italic mt-4'>Reviews</h2>
           <MedReviews/>
     </div>
   </div>)

@@ -2,7 +2,8 @@ import express from "express";
 
 //Routes
 import MedsRouter from "./routes/MedsRoute.js";
-import UserRoutes from "./routes/UserRoute.js";
+import UserRouter from "./routes/UserRoute.js";
+import AdminRouter from "./routes/AdminRoute.js";
 import CartRouter from "./routes/CartRoutes.js";
 import KhaltiRouter from "./routes/KhaltiRoute.js";
 
@@ -39,7 +40,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/meds", MedsRouter);
-app.use("/api/user",UserRoutes);
+app.use("/api/user",UserRouter);
+app.use("/api/admin",AdminRouter);
 app.use("/api/cart",CartRouter);
 app.use("/api/khalti",KhaltiRouter);
 

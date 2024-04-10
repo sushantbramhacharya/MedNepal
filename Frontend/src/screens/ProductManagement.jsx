@@ -1,32 +1,23 @@
 import React, { useState } from "react";
+import { useGetMedsQuery } from "../api/medsApi";
 
 const ProductManagementScreen = () => {
   // Sample product data
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      description: "Description of Product 1",
-      price: 100,
-      image: "https://via.placeholder.com/150", // Example placeholder image URL
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      description: "Description of Product 2",
-      price: 150,
-      image: "https://via.placeholder.com/150", // Example placeholder image URL
-    },
-    // Add more product data as needed
-  ];
+  const [sort,setSort]=useState(0);
+  const {isError,isLoading,data:products}=useGetMedsQuery(sort);
+  
 
   // State to store search query
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter products based on search query
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  let filteredProducts;
+  if(!isLoading){
+    filteredProducts= products.filter(product =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  
 
   return (
     <div className="bg-gray-100 px-10 min-h-screen">
@@ -50,7 +41,7 @@ const ProductManagementScreen = () => {
         </div>
         {/* Product grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
+          {filteredProducts?.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-md p-6">
               <img src={product.image} alt={product.name} className="w-32 h-32 object-cover mx-auto mb-4" />
               <h2 className="text-xl font-semibold mb-2">{product.name}</h2>

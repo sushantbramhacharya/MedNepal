@@ -23,7 +23,7 @@ const medsApi=api.injectEndpoints({
         }),
         setReview:builder.mutation({
             query:(data)=>({
-                url:BASE_URL+'/meds/set-review',
+                url:BASE_URL+'/meds/review',
                 method:"POST",
                 body:data
             })

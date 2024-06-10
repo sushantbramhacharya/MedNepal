@@ -9,7 +9,7 @@ router.route('/').get(fetchMeds)
 router.route('/sort/:sort').get(fetchMedsSorted)
 
 router.route('/:id').get(fetchMedsByID)
-router.route('/set-review').post(
+router.route('/review').post(
     (req,res)=>{
         res.json({test:"test"})
     }

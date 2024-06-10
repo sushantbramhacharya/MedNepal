@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, request, response } from "express";
 
 import {fetchMeds,fetchMedsByID,fetchMedsSorted } from "../controller/medController.js";
 
@@ -9,5 +9,10 @@ router.route('/').get(fetchMeds)
 router.route('/sort/:sort').get(fetchMedsSorted)
 
 router.route('/:id').get(fetchMedsByID)
+router.route('/set-review').post(
+    (req,res)=>{
+        res.json({test:"test"})
+    }
+)
 
 export default router;

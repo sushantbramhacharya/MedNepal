@@ -4,8 +4,7 @@ import { adminOnly } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.route('/login').post(login);
-router.route('/logout').delete(logout);
+router.route('/').post(login).delete(logout);
 router.route('/orders').get(adminOnly, fetchAllOrders);
 router.route('/orders/:id/mark-delivered').put(adminOnly, markOrderAsDelivered);
 router.route('/products').post(adminOnly, addProduct); 

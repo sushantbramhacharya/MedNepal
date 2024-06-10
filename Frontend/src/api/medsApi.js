@@ -1,4 +1,5 @@
 import { api } from "./api";
+import { BASE_URL } from "../constants";
 
 const medsApi=api.injectEndpoints({
     endpoints:(builder)=>({
@@ -20,7 +21,14 @@ const medsApi=api.injectEndpoints({
             }),
             keepUnusedDataFor:5
         }),
+        setReview:builder.mutation({
+            query:(data)=>({
+                url:BASE_URL+'/meds/set-review',
+                method:"POST",
+                body:data
+            })
+        })
     })
 })
 
-export const {useGetMedsQuery,useGetMedByIdQuery}=medsApi;
+export const {useGetMedsQuery,useGetMedByIdQuery,useSetReviewMutation}=medsApi;

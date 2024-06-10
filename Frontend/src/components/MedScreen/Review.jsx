@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import { useSetReviewMutation } from '../../api/medsApi';
 
 const Review = () => {
   const [rating, setRating] = useState(0);
   const [clicked, setClicked] = useState(false);
   const [review,setReview]=useState('');
+  const [setReviewMutation,{isLoading:isLoadingCart}]=useSetReviewMutation();
 
+  const setReviewHandle=async (e)=>{
+    e.preventDefault();
+
+      await setReviewMutation();
+    
+  }
 
   const handleMouseOver = (index) => {
     if(!clicked)
@@ -43,7 +51,7 @@ const Review = () => {
         })}
     </div>
   <input value={review} onChange={(e)=>setReview(e.target.value)} className='p-2 my-2 outline-none h-14 w-1/2' type='text' id='review' placeholder='Write your review'/>
-  <button className='mx-4 p-2 bg-green-400 text-white rounded-lg shadow-md'>Post Review</button>
+  <button onClick={setReviewHandle} className='mx-4 p-2 bg-green-400 text-white rounded-lg shadow-md'>Post Review</button>
   <hr className='border-slate-600 mt-5' />
   </>
   );

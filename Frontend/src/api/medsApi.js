@@ -27,6 +27,14 @@ const medsApi=api.injectEndpoints({
                 method:"POST",
                 body:data
             })
+        }),
+        getReview:builder.query({
+            query:(medId)=>({
+                query:(medId)=>({
+                    url:'/meds/review/'+medId
+                }),
+                keepUnusedDataFor:5
+            })
         })
     })
 })

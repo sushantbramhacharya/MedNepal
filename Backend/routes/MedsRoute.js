@@ -15,4 +15,8 @@ router.route('/review').post(
     }
 )
 
+router.route('/review/:id').get(
+    
+)
+
 export default router;
